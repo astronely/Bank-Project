@@ -28,4 +28,7 @@ test:
 server:
 	go run main.go
 
-.PHONY: postgres createdb dropdb migrateup migratedown run stop sqlc test server
+mock:
+	mockgen -package mockdb --build_flags=--mod=mod -destination db/mock/store.go github.com/astronely/simplebank/db/sqlc Store
+
+.PHONY: postgres createdb dropdb migrateup migratedown run stop sqlc test server mock
